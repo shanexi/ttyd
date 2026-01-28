@@ -11,7 +11,7 @@ const wsUrl = [protocol, '//', window.location.host, path, '/ws', window.locatio
 const tokenUrl = [window.location.protocol, '//', window.location.host, path, '/token'].join('');
 const clientOptions = {
     rendererType: 'webgl',
-    disableLeaveAlert: false,
+    disableLeaveAlert: true,
     disableResizeOverlay: false,
     enableZmodem: false,
     enableTrzsz: false,

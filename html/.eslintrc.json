@@ -15,6 +15,12 @@
       "rules": {
         "node/no-unpublished-require": "off"
       }
+    },
+    {
+      "files": ["**/*.test.ts", "vitest.config.ts"],
+      "rules": {
+        "node/no-unpublished-import": "off"
+      }
     }
   ]
 }

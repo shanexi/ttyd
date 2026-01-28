@@ -10,6 +10,9 @@ import { ImageAddon } from '@xterm/addon-image';
 import { Unicode11Addon } from '@xterm/addon-unicode11';
 import { OverlayAddon } from './addons/overlay';
 import { ZmodemAddon } from './addons/zmodem';
+import { MCPAddon } from '../../../addons/mcp';
+import { SlashMenuAddon } from '../../../addons/slash-menu';
+import { CustomInputAddon } from '../../../addons/custom-input';
 
 import '@xterm/xterm/css/xterm.css';
 
@@ -88,6 +91,9 @@ export class Xterm {
     private overlayAddon = new OverlayAddon();
     private clipboardAddon = new ClipboardAddon();
     private webLinksAddon = new WebLinksAddon();
+    private mcpAddon = new MCPAddon();
+    private slashMenuAddon = new SlashMenuAddon();
+    private customInputAddon = new CustomInputAddon();
     private webglAddon?: WebglAddon;
     private canvasAddon?: CanvasAddon;
     private zmodemAddon?: ZmodemAddon;
@@ -164,6 +170,9 @@ export class Xterm {
         terminal.loadAddon(overlayAddon);
         terminal.loadAddon(clipboardAddon);
         terminal.loadAddon(webLinksAddon);
+        terminal.loadAddon(this.customInputAddon);
+        terminal.loadAddon(this.mcpAddon);
+        terminal.loadAddon(this.slashMenuAddon);
 
         terminal.open(parent);
         fitAddon.fit();
@@ -271,6 +280,9 @@ export class Xterm {
         } else {
             this.opened = true;
         }
+
+        // Set socket reference for custom input addon
+        this.customInputAddon.setSocket(this.socket!);
 
         this.doReconnect = this.reconnect;
         this.initListeners();
